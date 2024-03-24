@@ -12,6 +12,7 @@ body {
 }
 li {
   list-style-type: none;
+  text-align: center;
 }
 
 .header {
@@ -44,9 +45,19 @@ li {
 }
 
 .book {
+  display: flex;
+  flex-direction: column;
   border: 1px solid;
   max-height: 30vh;
   min-height: 150px;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.book > span {
+  /* border: 1px solid; */
+  margin-top: auto;
+  /* justify-self: end; */
 }
 
 button {
@@ -78,7 +89,6 @@ button:hover {
   top: 30%;
   left: 30%;
   width: 40%;
-  height: 40%;
   background-color: aquamarine;
   z-index: 2;
   border: 2px solid rgb(33, 196, 141);
@@ -91,10 +101,18 @@ button:hover {
   flex-direction: column;
   align-items: center;
   /* padding: 20px; */
-  justify-content: center;
+  justify-content: flex-start;
   border: 1px pink solid;
   height: 100%;
+  padding: 5px;
 }
+
+.exit-btn {
+  height: 20px;
+  width: 20px;
+  align-self: flex-end;
+}
+
 .modal-form p {
   padding: 10px;
   border: 1px solid rgb(193, 209, 47);
@@ -105,6 +123,7 @@ button:hover {
 
 p > label {
   /* border: 1px solid red; */
+  flex: 1;
   min-width: 120px;
 }
 

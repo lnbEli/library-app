@@ -8,33 +8,47 @@
     <title>Libary App</title>
   </head>
   <body>
-    <section class="overlay"></section>
-    <section class="modal">
+    <section hidden class="overlay"></section>
+    <section hidden class="modal">
       <form action="#" class="modal-form">
+        <button type="button" class="exit-btn">x</button>
         <p>
           <label for="author">Author</label>
-          <input type="text" name="author" id="author" />
+          <input type="text" name="author" id="author" required />
         </p>
         <p>
           <label for="title">Title</label>
-          <input type="text" name="title" id="title" />
+          <input type="text" name="title" id="title" required />
         </p>
         <p>
           <label for="pages">No. of Pages</label>
-          <input type="tel" name="pages" id="pages" />
+          <input type="number" name="pages" id="pages" required />
         </p>
         <p>
-          <label for="read">Already Read</label>
-          <input type="text" name="read" id="read" />
+          <label for="already-read">Already Read</label>
+          <select name="read" id="already-read" required>
+            <option value="true">Yes</option>
+            <option selected value="false">No</option>
+          </select>
+        </p>
+        <p>
+          <input type="submit" id="submit" name="Submit" />
         </p>
       </form>
     </section>
     <header class="header">
-      <button>Add Book</button>
+      <button class="open-btn">Add Book</button>
     </header>
     <section class="main-body">
       <ul class="book-list">
-        <li class="book"><h3>Book1</h3></li>
+        <li class="book">
+          <h3 class="book-author">George Orwell</h3>
+          <h4 class="book-name">Homage to Catalonia</h4>
+          <span>
+            <p>Pages:<span class="book-pages">378</span></p>
+            <p>Read:<span class="book-read">Yes</span></p>
+          </span>
+        </li>
         <li class="book">Book2</li>
         <li class="book">Book3</li>
         <li class="book">Book4</li>
