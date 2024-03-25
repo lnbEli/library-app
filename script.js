@@ -21,7 +21,7 @@ const book3 = {
   author: "Albert Camus",
   title: "The Stranger",
   pages: 268,
-  read: "no",
+  read: "--",
 };
 
 const myLibrary = [book1, book2, book3];
@@ -86,7 +86,7 @@ function openModal() {
   overlay.removeAttribute("hidden", "");
 }
 
-// Loops through library array an adds each books details to DOM
+// Loops through library array an adds each books details to DOM. Also adds toggle button for if read or not.
 
 function addBookToDom() {
   const bookList = document.querySelector(".book-list");
@@ -94,12 +94,28 @@ function addBookToDom() {
   bookList.textContent = "";
 
   for (let i = 0; i < myLibrary.length; i++) {
-    const htmlBlockOfBook = `<input type="button" class="remove-book-btn" data-id="${i}" value="&#x1f5d1"/><h3 class="book-author">${myLibrary[i].author}</h3>
+    const htmlBlockOfBook = `<input type="button" class="remove-book-btn" data-id="${i}" value="&#x1f5d1"/><h3 class="book-author">${
+      myLibrary[i].author
+    }</h3>
     <h4 class="book-name">${myLibrary[i].title}</h4>
     <span>
       <p>Pages:<span class="book-pages">${myLibrary[i].pages}</span></p>
-      <p>Read:<span class="book-read">${myLibrary[i].read}</span></p>
-    </span>`;
+      <p>
+      <label for="already-read">Already Read</label>
+          <select name="read" id="already-read" required>
+            <option ${
+              myLibrary[i].read === "--" ? `selected` : `valid`
+            } value="&#x1F937">&#x1F937</option>
+            <option ${
+              myLibrary[i].read === "yes" ? `selected` : `valid`
+            } value="Yes">Yes</option>
+            <option ${
+              myLibrary[i].read === "no" ? `selected` : `valid`
+            } value="No">No</option>
+          </select>
+    </p>
+    </span>
+   `;
 
     const li = document.createElement("li");
     li.classList.add("book");
@@ -110,7 +126,11 @@ function addBookToDom() {
   addEventListeners();
 }
 
-// nction to add event listner to current delete button of books currently in myLibraryfu
+{
+  /* <p>Read:<span class="book-read">${myLibrary[i].read}</span></p> */
+}
+
+// Function to add event listner to current delete button of books currently in myLibraryfu
 // To be run every time the Library is updated or location in myLibrary array will be out of sync.
 
 function addEventListeners() {
