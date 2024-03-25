@@ -27,8 +27,9 @@
         <p>
           <label for="already-read">Already Read</label>
           <select name="read" id="already-read" required>
-            <option value="true">Yes</option>
-            <option selected value="false">No</option>
+            <option selected value="&#x1F937">--</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </select>
         </p>
         <p>
@@ -40,19 +41,7 @@
       <button class="open-btn">Add Book</button>
     </header>
     <section class="main-body">
-      <ul class="book-list">
-        <li class="book">
-          <h3 class="book-author">George Orwell</h3>
-          <h4 class="book-name">Homage to Catalonia</h4>
-          <span>
-            <p>Pages:<span class="book-pages">378</span></p>
-            <p>Read:<span class="book-read">Yes</span></p>
-          </span>
-        </li>
-        <li class="book">Book2</li>
-        <li class="book">Book3</li>
-        <li class="book">Book4</li>
-      </ul>
+      <ul class="book-list"></ul>
     </section>
     <section class="side-bar"></section>
     <script src="script.js"></script>

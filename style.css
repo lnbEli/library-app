@@ -131,3 +131,16 @@ p input {
   flex: 2;
   /* border: 1px solid red; */
 }
+
+.remove-book-btn {
+  align-self: end;
+  background-color: white;
+  border-style: none;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.remove-book-btn:hover {
+  border: 2px solid grey;
+  cursor: pointer;
+}
