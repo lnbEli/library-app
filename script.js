@@ -110,7 +110,7 @@ function addBookToDom() {
   addEventListeners();
 }
 
-// function to add event listner to current delete button of books currently in myLibrary
+// nction to add event listner to current delete button of books currently in myLibraryfu
 // To be run every time the Library is updated or location in myLibrary array will be out of sync.
 
 function addEventListeners() {
