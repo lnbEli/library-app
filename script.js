@@ -1,14 +1,6 @@
-// const bookAuthor = document.querySelector(".book-author");
-//   const bookName = document.querySelector(".book-name");
-//   const bookPages = document.querySelector(".book-pages");
-//   const bookRead = document.querySelector(".book-read");
-
 const book1 = new Book("George Orwell", "Homage to Catalonia", 378, "yes");
-
 const book2 = new Book("Jonathan Swift", "Gullivers Travels", 328, "yes");
-
-const book3 = new Book("Albert Camus", "The Stranger", 268, "--");
-
+const book3 = new Book("Albert Camus", "The Stranger", 268, "&#x1F937");
 const myLibrary = [book1, book2, book3];
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
@@ -95,19 +87,19 @@ function addBookToDom() {
       <label for="already-read-${i}">Already Read</label>
           <select class="dom-select-dropdown" name="read" id="already-read-${i}" required data-id=${i}>
             <option ${
-              myLibrary[i].read === "--" ? `selected` : ``
+              myLibrary[i].read === "&#x1F937" ? `selected` : ``
             } value="&#x1F937">&#x1F937</option>
             <option ${
               myLibrary[i].read === "yes" ? `selected` : ``
-            } value="Yes">Yes</option>
+            } value="yes">Yes</option>
             <option ${
               myLibrary[i].read === "no" ? `selected` : ``
-            } value="No">No</option>
+            } value="no">No</option>
           </select>
     </p>
     </span>
    `;
-    q;
+
     const li = document.createElement("li");
     li.classList.add("book");
     li.innerHTML = htmlBlockOfBook;
@@ -115,9 +107,6 @@ function addBookToDom() {
   }
 
   addEventListeners();
-}
-
-{
 }
 
 // Function to add event listner to current delete button of books currently in myLibrary

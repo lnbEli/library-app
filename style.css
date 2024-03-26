@@ -4,6 +4,7 @@ body {
   grid-template-columns: minmax(150px, 1fr) 5fr;
   grid-template-rows: 1fr 4fr;
   min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -26,7 +27,18 @@ li {
   background-color: rgb(170, 202, 205);
   grid-row: 1/3;
   grid-column: 1/2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.main-heading {
+  transform: rotate(-90deg);
+  font-size: 130px;
+  color: white;
+  flex: 1;
+}
+
 .main-body {
   background-color: rgb(255, 255, 255);
   grid-row: 2/3;
@@ -58,27 +70,7 @@ li {
 }
 
 .book > span {
-  /* border: 1px solid; */
   margin-top: auto;
-  /* justify-self: end; */
-}
-
-button {
-  height: 25%;
-  width: 10%;
-  border-radius: 10px;
-  box-shadow: none;
-  outline: none;
-  border-style: none;
-}
-
-button:hover {
-  /* border-style: inset; */
-  border: 2px solid grey;
-  color: grey;
-  cursor: pointer;
-  box-shadow: 2px 6px 8px 2px #47464630;
-  font-size: 0.8em;
 }
 
 .overlay {
@@ -95,47 +87,36 @@ button:hover {
   top: 30%;
   left: 30%;
   width: 40%;
-  background-color: aquamarine;
+  background-color: rgb(208, 214, 214);
   z-index: 2;
-  border: 2px solid rgb(33, 196, 141);
+  border: 2px solid rgb(86, 87, 87);
+  box-shadow: 5px 6px 8px 2px #47464630;
   border-radius: 5px;
-  /* border: 1px solid; */
 }
 
 .modal-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding: 20px; */
   justify-content: flex-start;
-  border: 1px pink solid;
   height: 100%;
   padding: 5px;
 }
 
-.exit-btn {
-  height: 20px;
-  width: 20px;
-  align-self: flex-end;
-}
-
 .modal-form p {
   padding: 10px;
-  border: 1px solid rgb(193, 209, 47);
   width: 80%;
   display: flex;
   flex-wrap: wrap;
 }
 
 p > label {
-  /* border: 1px solid red; */
   flex: 1;
   min-width: 120px;
 }
 
 p input {
   flex: 2;
-  /* border: 1px solid red; */
 }
 
 .remove-book-btn {
@@ -152,12 +133,10 @@ p input {
   cursor: pointer;
 }
 
-select {
+.dom-select-dropdown {
   padding: 5px 5px 5px 5px;
   border: 2px solid #ccc;
   appearance: none;
-  /* background: url() 96% / 15% no-repeat
-    #eee; */
   border-radius: 5px;
   cursor: pointer;
 }
@@ -165,6 +144,53 @@ select {
 .open-btn {
   min-width: 80px;
   min-height: 60px;
-  color: rgb(142, 144, 145);
-  border: 3px solid rgb(170, 202, 205);
+  color: rgb(75, 76, 76);
+  font-weight: 600;
+  border: 5px solid rgb(170, 202, 205);
+  height: 25%;
+  width: 10%;
+  border-radius: 10px;
+}
+
+.open-btn:hover {
+  border: 2px solid grey;
+  color: grey;
+  cursor: pointer;
+  box-shadow: 2px 6px 8px 2px #47464630;
+  font-size: 0.8em;
+}
+
+.exit-btn {
+  height: 25px;
+  width: 25px;
+  align-self: flex-end;
+  background-color: rgb(86, 87, 87);
+  color: white;
+  border-radius: 5px;
+}
+
+.exit-btn:hover {
+  cursor: pointer;
+  box-shadow: 2px 6px 8px 2px #47464630;
+  background-color: white;
+  border: solid 2px grey;
+  color: rgb(86, 87, 87);
+}
+
+button {
+  box-shadow: none;
+  outline: none;
+  border-style: none;
+}
+
+.modal-form input {
+  border-radius: 4px;
+  border-style: none;
+  height: 1.5em;
+  padding: 3px 8px;
+  border: 1px solid grey;
+}
+
+#submit {
+  height: 2em;
 }
