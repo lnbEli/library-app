@@ -36,7 +36,7 @@ li {
 
 .book-list {
   width: 100%;
-  background-color: aqua;
+  background-color: rgb(208, 214, 214);
   height: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, 200px);
@@ -47,11 +47,14 @@ li {
 .book {
   display: flex;
   flex-direction: column;
-  border: 1px solid;
+  border: 2px solid gray;
   max-height: 30vh;
   min-height: 150px;
   border-radius: 8px;
   padding: 10px;
+  background-color: white;
+  box-shadow: 2px 6px 8px 2px #47464630;
+  border-left: solid 12px gray;
 }
 
 .book > span {
@@ -63,7 +66,7 @@ li {
 button {
   height: 25%;
   width: 10%;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: none;
   outline: none;
   border-style: none;
@@ -72,7 +75,10 @@ button {
 button:hover {
   /* border-style: inset; */
   border: 2px solid grey;
+  color: grey;
   cursor: pointer;
+  box-shadow: 2px 6px 8px 2px #47464630;
+  font-size: 0.8em;
 }
 
 .overlay {
@@ -138,9 +144,27 @@ p input {
   border-style: none;
   border-radius: 5px;
   padding: 3px;
+  border: 1px solid grey;
 }
 
 .remove-book-btn:hover {
   border: 2px solid grey;
   cursor: pointer;
+}
+
+select {
+  padding: 5px 5px 5px 5px;
+  border: 2px solid #ccc;
+  appearance: none;
+  /* background: url() 96% / 15% no-repeat
+    #eee; */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.open-btn {
+  min-width: 80px;
+  min-height: 60px;
+  color: rgb(142, 144, 145);
+  border: 3px solid rgb(170, 202, 205);
 }

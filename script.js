@@ -3,26 +3,11 @@
 //   const bookPages = document.querySelector(".book-pages");
 //   const bookRead = document.querySelector(".book-read");
 
-const book1 = {
-  author: "George Orwell",
-  title: "Homage to Catalonia",
-  pages: 378,
-  read: "yes",
-};
+const book1 = new Book("George Orwell", "Homage to Catalonia", 378, "yes");
 
-const book2 = {
-  author: "Jonathan Swift",
-  title: "Gullivers Travels",
-  pages: 328,
-  read: "yes",
-};
+const book2 = new Book("Jonathan Swift", "Gullivers Travels", 328, "yes");
 
-const book3 = {
-  author: "Albert Camus",
-  title: "The Stranger",
-  pages: 268,
-  read: "--",
-};
+const book3 = new Book("Albert Camus", "The Stranger", 268, "--");
 
 const myLibrary = [book1, book2, book3];
 const modal = document.querySelector(".modal");
@@ -45,6 +30,11 @@ function Book(author, title, pages, read) {
   this.pages = pages;
   this.read = read;
 }
+
+Book.prototype.toggleRead = function (hasBeenRead) {
+  console.log(this);
+  this.read = hasBeenRead;
+};
 
 // Function to create new book object and adds it to library
 
@@ -104,18 +94,19 @@ function addBookToDom() {
       <label for="already-read">Already Read</label>
           <select name="read" id="already-read" required>
             <option ${
-              myLibrary[i].read === "--" ? `selected` : `valid`
+              myLibrary[i].read === "--" ? `selected` : ``
             } value="&#x1F937">&#x1F937</option>
             <option ${
-              myLibrary[i].read === "yes" ? `selected` : `valid`
+              myLibrary[i].read === "yes" ? `selected` : ``
             } value="Yes">Yes</option>
             <option ${
-              myLibrary[i].read === "no" ? `selected` : `valid`
+              myLibrary[i].read === "no" ? `selected` : ``
             } value="No">No</option>
           </select>
     </p>
     </span>
    `;
+    /* <p>Read:<span class="book-read">${myLibrary[i].read}</span></p> */
 
     const li = document.createElement("li");
     li.classList.add("book");
@@ -127,7 +118,6 @@ function addBookToDom() {
 }
 
 {
-  /* <p>Read:<span class="book-read">${myLibrary[i].read}</span></p> */
 }
 
 // Function to add event listner to current delete button of books currently in myLibraryfu
