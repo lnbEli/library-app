@@ -31,8 +31,9 @@ function Book(author, title, pages, read) {
   this.read = read;
 }
 
+// Adds method to prototype that can toggle read status
+
 Book.prototype.toggleRead = function (hasBeenRead) {
-  console.log(this);
   this.read = hasBeenRead;
 };
 
@@ -91,8 +92,8 @@ function addBookToDom() {
     <span>
       <p>Pages:<span class="book-pages">${myLibrary[i].pages}</span></p>
       <p>
-      <label for="already-read">Already Read</label>
-          <select name="read" id="already-read" required>
+      <label for="already-read-${i}">Already Read</label>
+          <select class="dom-select-dropdown" name="read" id="already-read-${i}" required data-id=${i}>
             <option ${
               myLibrary[i].read === "--" ? `selected` : ``
             } value="&#x1F937">&#x1F937</option>
@@ -106,8 +107,7 @@ function addBookToDom() {
     </p>
     </span>
    `;
-    /* <p>Read:<span class="book-read">${myLibrary[i].read}</span></p> */
-
+    q;
     const li = document.createElement("li");
     li.classList.add("book");
     li.innerHTML = htmlBlockOfBook;
@@ -120,17 +120,30 @@ function addBookToDom() {
 {
 }
 
-// Function to add event listner to current delete button of books currently in myLibraryfu
+// Function to add event listner to current delete button of books currently in myLibrary
 // To be run every time the Library is updated or location in myLibrary array will be out of sync.
 
 function addEventListeners() {
   const [...arrayOfDeleteButton] =
     document.querySelectorAll(".remove-book-btn");
 
+  const [...arrayOfDropdownSelectElements] = document.querySelectorAll(
+    ".dom-select-dropdown"
+  );
+
   arrayOfDeleteButton.forEach((element) => {
     element.addEventListener("click", () => {
       myLibrary.splice(element.dataset.id, 1);
       addBookToDom();
+    });
+  });
+
+  // Adds event listner to all dropdown menu on books that toggles read status
+
+  arrayOfDropdownSelectElements.forEach((element) => {
+    element.addEventListener("change", () => {
+      myLibrary[element.dataset.id].toggleRead(element.value);
+      console.log(myLibrary[element.dataset.id]);
     });
   });
 }
