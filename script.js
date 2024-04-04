@@ -1,6 +1,21 @@
+// Constructor function to create books changed to Classes. Must be at top has not hoisted.
+class Book {
+  constructor(author, title, pages, read) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.read = read;
+  }
+
+  toggleRead(hasBeenRead) {
+    this.read = hasBeenRead;
+  }
+}
+
 const book1 = new Book("George Orwell", "Homage to Catalonia", 378, "yes");
 const book2 = new Book("Jonathan Swift", "Gullivers Travels", 328, "yes");
 const book3 = new Book("Albert Camus", "The Stranger", 268, "&#x1F937");
+
 const myLibrary = [book1, book2, book3];
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
@@ -13,21 +28,6 @@ addBookToDom();
 exitModalBtn.addEventListener("click", closeModal);
 openModalBtn.addEventListener("click", openModal);
 submitBtn.addEventListener("click", submitForm);
-
-// Constructor function to create books
-
-function Book(author, title, pages, read) {
-  this.author = author;
-  this.title = title;
-  this.pages = pages;
-  this.read = read;
-}
-
-// Adds method to prototype that can toggle read status
-
-Book.prototype.toggleRead = function (hasBeenRead) {
-  this.read = hasBeenRead;
-};
 
 // Function to create new book object and adds it to library
 
@@ -43,6 +43,7 @@ function submitForm(e) {
   }
 
   e.preventDefault();
+
   const newBook = new Book(
     author.value,
     title.value,
