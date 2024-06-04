@@ -6,16 +6,18 @@ const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const exitModalBtn = document.querySelector(".exit-btn");
 const openModalBtn = document.querySelector(".open-btn");
-const submitBtn = document.querySelector("#submit");
+const form = document.querySelector(".modal-form");
+const formInputsMinLength = document.querySelectorAll(`input[minlength]`);
+const formInputMinPages = document.querySelector("input[min]");
 
 addBookToDom();
 
 exitModalBtn.addEventListener("click", closeModal);
 openModalBtn.addEventListener("click", openModal);
-submitBtn.addEventListener("click", submitForm);
+form.addEventListener("submit", submitForm);
+addInputVarificationEventListeners();
 
 // Constructor function to create books
-
 function Book(author, title, pages, read) {
   this.author = author;
   this.title = title;
@@ -24,39 +26,36 @@ function Book(author, title, pages, read) {
 }
 
 // Adds method to prototype that can toggle read status
-
 Book.prototype.toggleRead = function (hasBeenRead) {
   this.read = hasBeenRead;
 };
 
 // Function to create new book object and adds it to library
-
 function submitForm(e) {
-  let author = document.querySelector("#author");
-  let title = document.querySelector("#title");
-  let pages = document.querySelector("#pages");
-  let read = document.querySelector("#already-read");
+  const author = document.querySelector("#author");
+  const title = document.querySelector("#title");
+  const pages = document.querySelector("#pages");
+  const read = document.querySelector("#already-read");
 
-  // Add basic form validation before preventing defualt.
-  if (author.value === "" || title.value === "") {
-    return;
-  }
-
+  // Check JS constraint validation before preventing defualt.
   e.preventDefault();
-  const newBook = new Book(
-    author.value,
-    title.value,
-    pages.value === "" ? "na" : pages.value,
-    read.value
-  );
-  myLibrary.push(newBook);
 
-  addBookToDom();
-  author.value = "";
-  title.value = "";
-  pages.value = "";
-  read.value = "";
-  closeModal();
+  if (formValid(author, title, pages)) {
+    const newBook = new Book(
+      author.value,
+      title.value,
+      pages.value === "" ? "na" : pages.value,
+      read.value
+    );
+    myLibrary.push(newBook);
+
+    addBookToDom();
+    author.value = "";
+    title.value = "";
+    pages.value = "";
+    read.value = "";
+    closeModal();
+  }
 }
 
 function closeModal() {
@@ -70,7 +69,6 @@ function openModal() {
 }
 
 // Loops through library array an adds each books details to DOM. Also adds toggle button for if read or not.
-
 function addBookToDom() {
   const bookList = document.querySelector(".book-list");
   //Clears previously populated booklist
@@ -106,13 +104,12 @@ function addBookToDom() {
     bookList.append(li);
   }
 
-  addEventListeners();
+  addBookButtonEventListeners();
 }
 
 // Function to add event listner to current delete button of books currently in myLibrary
 // To be run every time the Library is updated or location in myLibrary array will be out of sync.
-
-function addEventListeners() {
+function addBookButtonEventListeners() {
   const [...arrayOfDeleteButton] =
     document.querySelectorAll(".remove-book-btn");
 
@@ -128,11 +125,38 @@ function addEventListeners() {
   });
 
   // Adds event listner to all dropdown menu on books that toggles read status
-
   arrayOfDropdownSelectElements.forEach((element) => {
     element.addEventListener("change", () => {
       myLibrary[element.dataset.id].toggleRead(element.value);
-      console.log(myLibrary[element.dataset.id]);
     });
   });
+}
+
+// Add event listeners to form inputs that check validity
+function addInputVarificationEventListeners() {
+  formInputsMinLength.forEach((input) => {
+    input.addEventListener("input", () => {
+      if (input.validity.tooShort) {
+        input.setCustomValidity(
+          `${input.id.toUpperCase()}'s name must be longer than 3 letters`
+        );
+      } else {
+        input.setCustomValidity("");
+      }
+    });
+  });
+
+  formInputMinPages.addEventListener("input", () => {
+    if (formInputMinPages.validity.rangeUnderflow) {
+      formInputMinPages.setCustomValidity("Must have more than 1 page");
+    } else {
+      formInputMinPages.setCustomValidity("");
+    }
+  });
+}
+
+// Checks if all form inputs are valid. Allows for unknown number of arguments.
+
+function formValid(...inputs) {
+  return inputs.every((input) => input.validity.valid);
 }
