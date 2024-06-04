@@ -38,9 +38,8 @@ function submitForm(e) {
   const read = document.querySelector("#already-read");
 
   // Check JS constraint validation before preventing defualt.
-  e.preventDefault();
-
   if (formValid(author, title, pages)) {
+    e.preventDefault();
     const newBook = new Book(
       author.value,
       title.value,
@@ -55,6 +54,8 @@ function submitForm(e) {
     pages.value = "";
     read.value = "";
     closeModal();
+  } else {
+    return;
   }
 }
 
